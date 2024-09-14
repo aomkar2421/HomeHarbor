@@ -1,47 +1,66 @@
-import HomePage from "./routes/homePage/Homepage";
 import {
   createBrowserRouter,
   RouterProvider,
 } from "react-router-dom";
 import ListPage from "./routes/listPage/ListPage";
-import Layout from "./routes/layout/Layout";
+import { Layout, RequireAuth } from "./routes/layout/layout";
 import SinglePage from "./routes/singlePage/SinglePage";
 import Login from "./routes/login/Login";
 import ProfilePage from "./routes/profilePage/ProfilePage";
 import Register from "./routes/register/Register";
+import Homepage from "./routes/homepage/Homepage";
+import ProfileUpdatePage from "./routes/profileUpdatePage/ProfileUpdatePage";
 
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
       element: <Layout />,
-      children:[
+      children: [
         {
-          path:"/",
-          element:<HomePage/>
+          path: "/",
+          element: <Homepage />,
         },
         {
-          path:"/list",
-          element:<ListPage/>
+          path: "/list",
+          element: <ListPage />,
+          // loader: listPageLoader,
         },
         {
-          path:"/:id",
-          element:<SinglePage/>
+          path: "/:id",
+          element: <SinglePage />,
+          // loader: singlePageLoader,
+        },
+
+        {
+          path: "/login",
+          element: <Login />,
         },
         {
-          path:"/profile",
-          element:<ProfilePage/>
+          path: "/register",
+          element: <Register />,
+        },
+      ],
+    },
+    {
+      path: "/",
+      element: <RequireAuth />,
+      children: [
+        {
+          path: "/profile",
+          element: <ProfilePage />,
+          // loader: profilePageLoader
         },
         {
-          path:"/login",
-          element:<Login/>
+          path: "/profile/update",
+          element: <ProfileUpdatePage />,
         },
         {
-          path:"/register",
-          element:<Register/>
-        }
-      ]
-    }
+          path: "/add",
+          element: <NewPostPage />,
+        },
+      ],
+    },
   ]);
 
   return (
