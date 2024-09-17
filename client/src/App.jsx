@@ -10,6 +10,8 @@ import ProfilePage from "./routes/profilePage/ProfilePage";
 import Register from "./routes/register/Register";
 import Homepage from "./routes/homepage/Homepage";
 import ProfileUpdatePage from "./routes/profileUpdatePage/ProfileUpdatePage";
+import NewPostPage from "./routes/newPostPage/NewPostPage";
+import { listPageLoader, profilePageLoader, singlePageLoader } from "./lib/loaders";
 
 function App() {
   const router = createBrowserRouter([
@@ -24,12 +26,12 @@ function App() {
         {
           path: "/list",
           element: <ListPage />,
-          // loader: listPageLoader,
+          loader: listPageLoader,
         },
         {
           path: "/:id",
           element: <SinglePage />,
-          // loader: singlePageLoader,
+          loader: singlePageLoader,
         },
 
         {
@@ -49,7 +51,7 @@ function App() {
         {
           path: "/profile",
           element: <ProfilePage />,
-          // loader: profilePageLoader
+          loader: profilePageLoader
         },
         {
           path: "/profile/update",

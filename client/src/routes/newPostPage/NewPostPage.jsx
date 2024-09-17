@@ -159,12 +159,12 @@ const NewPostPage = () => {
         </div>
         <div className="sideContainer">
           {images.map((image, index) => (
-            <img src={image} key={index} alt="" />
+            <img src={image} key={index} alt="" /> 
           ))}
           <UploadWidget
             uwConfig={{
               multiple: true,
-              cloudName: "lamadev",
+              cloudName: "dlaf451ax",
               uploadPreset: "estate",
               folder: "posts",
             }}

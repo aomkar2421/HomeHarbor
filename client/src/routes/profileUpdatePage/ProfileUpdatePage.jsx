@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import "./profileUpdatePage.scss";
-import { AuthContext } from "../../../context/AuthContext";
+import { AuthContext } from "../../context/AuthContext";
 import {useNavigate} from "react-router-dom";
 import apiRequest from "../../lib/apiRequest.js";
 import UploadWidget from "../../components/uploadWidget/UploadWidget.jsx";
@@ -8,7 +8,7 @@ import UploadWidget from "../../components/uploadWidget/UploadWidget.jsx";
 const ProfileUpdatePage = () => {
   const { updateUser, currentUser } = useContext(AuthContext);
   const [error, setError] = useState("");
-  const [avatar, setAvatar] = useState(currentUser.avatar);
+  const [avatar, setAvatar] = useState([]);
 
   const navigate = useNavigate();
 
@@ -23,7 +23,7 @@ const ProfileUpdatePage = () => {
         username,
         email,
         password,
-        avatar
+        avatar: avatar[0]
       });
       updateUser(res.data);
       navigate("/profile");
@@ -64,9 +64,10 @@ const ProfileUpdatePage = () => {
           {error && <span>{error}</span>}
         </form>
       </div>
+      
       <div className="sideContainer">
         <img
-          src={avatar || "/noavatar.png"}
+          src={avatar[0] || currentUser.avatar || "/noavatar.png"}
           alt=""
           className="avatar"
         />
@@ -78,7 +79,7 @@ const ProfileUpdatePage = () => {
             maxImageFileSize: 2000000,
             folder: "avatars",
           }}
-          setAvatar={setAvatar}
+          setState={setAvatar}
         />
       </div>
     </div>

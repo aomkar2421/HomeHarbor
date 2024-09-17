@@ -8,7 +8,16 @@ import postRoute from "./routes/post.route.js";
 
 const app = express();
 
-app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
+// app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
+const corsOptions = {
+  origin: process.env.CLIENT_URL, // "http://localhost:5173"
+  credentials: true,              // to allow cookies
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",  // allowed methods
+  allowedHeaders: "Content-Type, Authorization", // allowed headers
+};
+
+app.use(cors(corsOptions));
+
 app.use(express.json());
 app.use(cookieParser());
 

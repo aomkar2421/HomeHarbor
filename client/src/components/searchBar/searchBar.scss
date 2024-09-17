@@ -72,24 +72,29 @@
       }
     }
 
-    button {
-      border: none;
-      cursor: pointer;
-      background-color: #fece51;
-      // flex: 1;
-
-      // @include lg{
-        width: 150px;
-      // }
-
-      @include sm{
-        padding: 10px;
-        width: 100%;
-      }
-
-      img {
-        width: 24px;
-        height: 24px;
+    a{
+      display: flex;
+      // align-items: center;
+      justify-content: center;
+      button {
+        border: none;
+        cursor: pointer;
+        background-color: #fece51;
+        // flex: 1;
+  
+        // @include lg{
+          width: 150px;
+        // }
+  
+        @include sm{
+          padding: 10px;
+          width: 100%;
+        }
+  
+        img {
+          width: 24px;
+          height: 24px;
+        }
       }
     }
   }

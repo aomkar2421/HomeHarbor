@@ -1,13 +1,16 @@
 import "./list.scss";
 import Card from "../card/Card";
-import {listData} from "../../lib/dummyData.js";
 
-const List = () => {
+const List = ({ posts = [] }) => {
   return (
     <div className="list">
-      {listData.map((item) => (
-        <Card key={item.id} item={item} />
-      ))}
+      {posts.length ? (
+        posts.map((item) => (
+          <Card key={item.id} item={item} />
+        ))
+      ) : (
+        <p>No items to display</p>
+      )}
     </div>
   );
 };
