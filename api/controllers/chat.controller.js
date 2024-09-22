@@ -74,6 +74,8 @@ export const getChat = async (req, res) => {
 
 export const addChat = async (req, res) => {
   const tokenUserId = req.userId;
+  console.log("Sender id============="+tokenUserId)
+  console.log("Receiver id============="+req.body.receiverId)
   try {
     const newChat = await prisma.chat.create({
       data: {

@@ -116,10 +116,22 @@ export const deletePost = async (req, res) => {
   try {
     const post = await prisma.post.findUnique({
       where: { id },
+      include: { postDetail: true }, // Include postDetail to check if it exists
     });
+
+    if (!post) {
+      return res.status(404).json({ message: "Post not found!" });
+    }
 
     if (post.userId !== tokenUserId) {
       return res.status(403).json({ message: "Not Authorized!" });
+    }
+
+    // Delete the associated PostDetail if it exists
+    if (post.postDetail) {
+      await prisma.postDetail.delete({
+        where: { postId: id },
+      });
     }
 
     await prisma.post.delete({

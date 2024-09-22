@@ -13,12 +13,13 @@ const Navbar = () => {
       <div className="left">
         <a href="/" className="logo">
           <img src="/logo.png" alt="" />
-          <span>LamaEstate</span>
+          <span>HomeHarbor</span>
         </a>
-        <a href="/">Home</a>
-        <a href="/">About</a>
+        <Link to={"/"}> Home</Link>
+        <Link to={"/add"}> New Post</Link>
+        <Link to={"/list"}> Listings</Link>
         <a href="/">Contact</a>
-        <a href="/">Agents</a>
+        <a href="/">About</a>
       </div>
       <div className="right">
         {currentUser ? (
@@ -29,7 +30,6 @@ const Navbar = () => {
             />
             <span>{currentUser.username}</span>
             <Link to="/profile" className="profile">
-              <div className="notification">3</div>
               <span>Profile</span>
             </Link>
           </div>

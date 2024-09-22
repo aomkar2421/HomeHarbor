@@ -63,7 +63,7 @@ const NewPostPage = () => {
               </div>
               <div className="item">
                 <label htmlFor="price">Price</label>
-                <input id="price" name="price" type="number" />
+                <input id="price" name="price"  value={15000} type="number" />
               </div>
               <div className="item">
                 <label htmlFor="address">Address</label>
@@ -79,11 +79,11 @@ const NewPostPage = () => {
               </div>
               <div className="item">
                 <label htmlFor="bedroom">Bedroom Number</label>
-                <input min={1} id="bedroom" name="bedroom" type="number" />
+                <input min={1} id="bedroom" value={3} name="bedroom" type="number" />
               </div>
               <div className="item">
                 <label htmlFor="bathroom">Bathroom Number</label>
-                <input min={1} id="bathroom" name="bathroom" type="number" />
+                <input min={1} id="bathroom" value={1} name="bathroom" type="number" />
               </div>
               <div className="item">
                 <label htmlFor="latitude">Latitude</label>
@@ -94,63 +94,62 @@ const NewPostPage = () => {
                 <input id="longitude" name="longitude" type="text" />
               </div>
               <div className="item">
-                <label htmlFor="type">Type</label>
-                <select name="type">
-                  <option value="rent" defaultChecked>
-                    Rent
-                  </option>
-                  <option value="buy">Buy</option>
-                </select>
-              </div>
+              <label htmlFor="type">Type</label>
+              <select name="type">
+                <option value="rent" defaultChecked>
+                  Rent
+                </option>
+                <option value="buy">Buy</option>
+              </select>
+            </div>
               <div className="item">
-                <label htmlFor="type">Property</label>
+                <label htmlFor="type">AC Rooms</label>
                 <select name="property">
-                  <option value="apartment">Apartment</option>
-                  <option value="house">House</option>
-                  <option value="condo">Condo</option>
-                  <option value="land">Land</option>
+                  <option value="apartment">Available</option>
+                  <option value="house">Not avialable</option>
                 </select>
               </div>
   
               <div className="item">
-                <label htmlFor="utilities">Utilities Policy</label>
+                <label htmlFor="utilities">Parking</label>
                 <select name="utilities">
-                  <option value="owner">Owner is responsible</option>
-                  <option value="tenant">Tenant is responsible</option>
-                  <option value="shared">Shared</option>
+                  <option value="owner">Available</option>
+                  <option value="tenant">Not avialable</option>
                 </select>
               </div>
               <div className="item">
-                <label htmlFor="pet">Pet Policy</label>
+                <label htmlFor="pet">Available For</label>
                 <select name="pet">
-                  <option value="allowed">Allowed</option>
-                  <option value="not-allowed">Not Allowed</option>
+                  <option value="girls">Girls</option>
+                  <option value="boys">Boys</option>
+                  <option value="girlsboys">Girls & Boys</option>
                 </select>
               </div>
               <div className="item">
-                <label htmlFor="income">Income Policy</label>
+                <label htmlFor="income">Deposit</label>
                 <input
                   id="income"
                   name="income"
                   type="text"
-                  placeholder="Income Policy"
+                  placeholder="Deposit"
+                  value={10000}
                 />
               </div>
               <div className="item">
-                <label htmlFor="size">Total Size (sqft)</label>
-                <input min={0} id="size" name="size" type="number" />
+                <label htmlFor="size">Maintainance</label>
+                <input min={0} id="size" name="size"  value={1000} type="number" />
               </div>
               <div className="item">
                 <label htmlFor="school">School</label>
-                <input min={0} id="school" name="school" type="number" />
+                <input min={0} id="school" name="school" value={300} type="number" />
               </div>
               <div className="item">
                 <label htmlFor="bus">bus</label>
-                <input min={0} id="bus" name="bus" type="number" />
+                <input min={0} id="bus" name="bus" value={400} type="number" />
               </div>
               <div className="item">
                 <label htmlFor="restaurant">Restaurant</label>
-                <input min={0} id="restaurant" name="restaurant" type="number" />
+                <input min={0} id="restaurant" name="restaurant" value={200} type="number" />
               </div>
               <button className="sendButton">Add</button>
               {error && <span>error</span>}
