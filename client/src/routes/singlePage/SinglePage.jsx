@@ -6,12 +6,16 @@ import DOMPurify from "dompurify";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import apiRequest from "../../lib/apiRequest";
+import { SocketContext } from "../../context/socketContext";
 
 const SinglePage = () => {
   const post = useLoaderData();
   const [saved, setSaved] = useState(post.isSaved);
   const { currentUser } = useContext(AuthContext);
   const navigate = useNavigate();
+  const { socket } = useContext(SocketContext);
+
+  // console.log("========== POST DATA ===========", post.userId);
 
   const handleSave = async () => {
     if (!currentUser) {
@@ -28,6 +32,43 @@ const SinglePage = () => {
     }
   };
 
+  const handleMessage = async () => {
+    if (!currentUser) {
+      navigate("/login");
+      return; // Prevent further execution if not authenticated
+    }
+  
+    try {
+      // Step 1: Check if a chat already exists or create a new one
+      let chatId;
+      const response = await apiRequest.post("/chats", { 
+        receiverId: post.userId 
+      });
+      chatId = response.data.id;
+  
+      // Step 2: Send the message
+      const messageData = {
+        text: "I want to enquire about PG Rooms"
+      };
+      
+      const msgResponse = await apiRequest.post(`/messages/${chatId}`, messageData);
+      
+      // Step 3: Emit socket event for real-time update
+      if (socket) {
+        socket.emit("sendMessage", {
+          receiverId: post.userId,
+          data: msgResponse.data
+        });
+      }
+  
+      // Step 4: Navigate to chat page
+      navigate(`/profile`);
+    } catch (err) {
+      console.log(err);
+      // Handle errors
+    }
+  };
+  
   return (
     <div className="singlePage">
       <div className="details">
@@ -142,7 +183,7 @@ const SinglePage = () => {
             <Map items={[post]} />
           </div>
           <div className="buttons">
-            <button>
+            <button onClick={handleMessage}>
               <img src="/chat.png" alt="" />
               Send a Message
             </button>

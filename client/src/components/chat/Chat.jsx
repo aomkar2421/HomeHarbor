@@ -2,7 +2,7 @@ import { useContext, useRef, useEffect, useState } from "react";
 import "./chat.scss";
 import { AuthContext } from "../../context/AuthContext";
 import apiRequest from "../../lib/apiRequest";
-import {format} from "timeago.js";
+import { format } from "timeago.js";
 import { SocketContext } from "../../context/socketContext";
 
 const Chat = ({ chats }) => {
@@ -11,7 +11,7 @@ const Chat = ({ chats }) => {
   const { socket } = useContext(SocketContext);
 
   // const decrease = useNotificationStore((state) => state.decrease);
-  
+
   const messageEndRef = useRef();
   useEffect(() => {
     messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -36,7 +36,7 @@ const Chat = ({ chats }) => {
     const text = formData.get("text");
 
     if (!text) return;
-
+    console.log("");
     try {
       const res = await apiRequest.post("/messages/" + chat.id, { text });
       setChat((prev) => ({ ...prev, messages: [...prev.messages, res.data] }));
@@ -50,9 +50,9 @@ const Chat = ({ chats }) => {
     }
   };
 
-  const testSocket = () =>{
-    socket.emit("test","hii from client")
-  }
+  const testSocket = () => {
+    socket.emit("test", "hii from client");
+  };
 
   useEffect(() => {
     const read = async () => {
@@ -75,7 +75,7 @@ const Chat = ({ chats }) => {
       socket.off("getMessage");
     };
   }, [socket, chat]);
-  
+
   return (
     <div className="chat">
       <div className="messages">
