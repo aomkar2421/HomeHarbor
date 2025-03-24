@@ -3,7 +3,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import ListPage from "./routes/listPage/ListPage";
-import { Layout, RequireAuth } from "./routes/layout/layout";
+import { Layout, RequireAuth } from "./routes/layout/Layout";
 import SinglePage from "./routes/singlePage/SinglePage";
 import Login from "./routes/login/Login";
 import ProfilePage from "./routes/profilePage/ProfilePage";
