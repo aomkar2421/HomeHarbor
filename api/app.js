@@ -7,15 +7,18 @@ import userRoute from "./routes/user.route.js";
 import postRoute from "./routes/post.route.js";
 import chatRoute from "./routes/chat.route.js";
 import messageRoute from "./routes/message.route.js";
+import dotenv from "dotenv";
 
+
+dotenv.config();
 const app = express();
 
 // app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 const corsOptions = {
-  origin: process.env.CLIENT_URL, // "http://localhost:5173"
-  credentials: true,              // to allow cookies
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",  // allowed methods
-  allowedHeaders: "Content-Type, Authorization", // allowed headers
+  origin: process.env.CLIENT_URL, 
+  credentials: true,              
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",  
+  allowedHeaders: "Content-Type, Authorization",
 };
 
 app.use(cors(corsOptions));
@@ -30,6 +33,6 @@ app.use("/api/posts", postRoute);
 app.use("/api/chats", chatRoute);
 app.use("/api/messages", messageRoute);
 
-app.listen(8800, () => {
+app.listen(process.env.NODE_PORT, () => {
   console.log("Server is running!");
 });
