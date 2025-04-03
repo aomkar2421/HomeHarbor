@@ -6,7 +6,6 @@ import {
   updateUser,
   savePost,
   profilePosts,
-//   getNotificationNumber
 } from "../controllers/user.controller.js";
 import {verifyToken} from "../middleware/verifyToken.js";
 

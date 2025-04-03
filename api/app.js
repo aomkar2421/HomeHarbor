@@ -14,11 +14,19 @@ dotenv.config();
 const app = express();
 
 // app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
+// const corsOptions = {
+//   origin: process.env.CLIENT_URL, 
+//   credentials: true,              
+//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",  
+//   allowedHeaders: "Content-Type, Authorization",
+// };
+
 const corsOptions = {
-  origin: process.env.CLIENT_URL, 
-  credentials: true,              
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",  
-  allowedHeaders: "Content-Type, Authorization",
+  origin: process.env.CLIENT_URL,
+  credentials: true,
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+  allowedHeaders: ["Content-Type", "Authorization"],
+  exposedHeaders: ["set-cookie"]
 };
 
 app.use(cors(corsOptions));
