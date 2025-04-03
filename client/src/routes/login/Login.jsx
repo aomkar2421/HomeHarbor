@@ -27,6 +27,8 @@ const Login = () => {
           })
 
           updateUser(res.data);
+          const userData = res.data;
+          localStorage.setItem('token', userData.token);
 
           console.log(res);
           console.log("User logIn Succesfully")
