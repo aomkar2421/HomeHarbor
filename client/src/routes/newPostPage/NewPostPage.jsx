@@ -79,11 +79,11 @@ const NewPostPage = () => {
               </div>
               <div className="item">
                 <label htmlFor="bedroom">Bedroom Number</label>
-                <input min={1} id="bedroom" value={3} name="bedroom" type="number" />
+                <input min={1} id="bedroom" name="bedroom" type="number" />
               </div>
               <div className="item">
                 <label htmlFor="bathroom">Bathroom Number</label>
-                <input min={1} id="bathroom" value={1} name="bathroom" type="number" />
+                <input min={1} id="bathroom" name="bathroom" type="number" />
               </div>
               <div className="item">
                 <label htmlFor="latitude">Latitude</label>
