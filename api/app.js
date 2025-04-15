@@ -12,6 +12,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 const app = express();
+const PORT = process.env.PORT || 8800;
 
 // app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 // const corsOptions = {
@@ -41,6 +42,6 @@ app.use("/api/posts", postRoute);
 app.use("/api/chats", chatRoute);
 app.use("/api/messages", messageRoute);
 
-app.listen(process.env.NODE_PORT, () => {
-  console.log("Server is running!");
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server is running on port ${PORT}`);
 });

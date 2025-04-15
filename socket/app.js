@@ -2,11 +2,18 @@ import { Server } from "socket.io";
 import dotenv from "dotenv";
 dotenv.config();
 
-const io = new Server({
+const PORT = process.env.PORT || 4000;
+
+const io = new Server(PORT, {
   cors: {
     origin: process.env.SOCKET_CORS,
+    methods: ["GET", "POST"],
+    credentials: true
   },
 });
+
+console.log(`Socket server running on port ${PORT}`);
+
 
 let onlineUser = [];
 
@@ -40,4 +47,3 @@ io.on("connection", (socket) => {
   });
 });
 
-io.listen(process.env.SOCKET_PORT);
